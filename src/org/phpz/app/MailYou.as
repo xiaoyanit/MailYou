@@ -14,6 +14,7 @@ package org.phpz.app
     import flash.net.URLRequestMethod;
     import flash.net.URLVariables;
     import flash.text.TextField;
+    import flash.text.TextFormat;
     import flash.ui.Multitouch;
     import flash.ui.MultitouchInputMode;
 	
@@ -24,7 +25,7 @@ package org.phpz.app
 	public class MailYou extends Sprite 
 	{
 		
-        private var access_token:String;
+        private var access_token:String = '';
         private var debugText:TextField;
         
 		public function MailYou():void 
@@ -46,6 +47,7 @@ package org.phpz.app
             debugText.multiline = true;
             debugText.borderColor = 0;
             debugText.border = true;
+            debugText.defaultTextFormat = new TextFormat('consolas');
             addChild(debugText);
             
             var tokenMode:Boolean = true;
@@ -76,9 +78,9 @@ package org.phpz.app
             else
             {
                 variables.redirect_uri = 'http://labs.phpz.org/doutest-app/callback.php';
+                variables.scope = 'douban_basic_common,shuo_basic_r,shuo_basic_w';
                 variables.response_type = 'code'
             }
-            variables.scope = 'douban_basic_common,shuo_basic_r,shuo_basic_w';
             
             uloader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
             uloader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, statusHandler);
@@ -107,10 +109,10 @@ package org.phpz.app
             switch(testIndex)
             {
                 case 1:
-                    api('https://api.douban.com/v2/doumail/inbox');
+                    api('https://api.douban.com/shuo/v2/statuses/home_timeline');
                     break;
                 case 2:
-                    api('https://api.douban.com/v2/doumail/outbox');
+                    api('https://api.douban.com/v2/doumail/inbox');
                     break;
                 case 0:
                 default:
