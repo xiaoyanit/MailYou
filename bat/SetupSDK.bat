@@ -1,7 +1,7 @@
 :user_configuration
 
 :: Path to Flex SDK
-set FLEX_SDK=D:\langs\flexsdks\4.6.0
+set FLEX_SDK=D:\langs\flexsdks\4.6.0_3.5
 set AUTO_INSTALL_IOS=yes
 
 :: Path to Android SDK
